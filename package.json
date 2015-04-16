@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/krylatov-pavel/TaskTracker",
   "dependencies": {
+    "body-parser": "^1.12.3",
     "express": "^4.12.3",
     "mongoose": "^4.0.1"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-exec": "^2.1.1",
     "gulp-jshint": "^1.10.0"
   }
 }
