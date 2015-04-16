@@ -1,5 +1,3 @@
-'use strict';
-
 var express = require("express");
 var routes = require('./app/routes');
 var app = express();

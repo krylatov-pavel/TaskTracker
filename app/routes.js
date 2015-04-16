@@ -1,8 +1,5 @@
-'use strict';
-
 function configure(app){
     //app.get("/api/project")
-
 }
 
 module.exports = {
