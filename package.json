@@ -1,0 +1,26 @@
+{
+  "name": "TaskTracker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://krylatov-pavel@github.com/krylatov-pavel/TaskTracker.git"
+  },
+  "author": "pavelk <krylatov.pavel@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krylatov-pavel/TaskTracker/issues"
+  },
+  "homepage": "https://github.com/krylatov-pavel/TaskTracker",
+  "dependencies": {
+    "express": "^4.12.3",
+    "mongoose": "^4.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
