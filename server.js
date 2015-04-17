@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-var routes = require("./app/routes");
 var db = require("./config/db");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -13,7 +12,9 @@ app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-routes.configure(app);
+require("./app/routes")(app, mongoose);
+
+app.use(require("./app/handlers/errorHandler"));
 
 app.listen(port);
 

@@ -1,13 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var projects = require("./controllers/projectsCtrl");
-var tickets = require("./controllers/ticketsCtrl");
+module.exports = function(app, mongoose) {
+    var express = require("express");
+    var router = express.Router();
+    var projects = require("./controllers/projectsCtrl")(mongoose);
 
-function configure (app){
     app.use("/api/projects", projects);
-    app.use("/api/tickets", tickets);
-}
-
-module.exports = {
-    configure: configure
 };
