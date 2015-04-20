@@ -1,8 +1,9 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+module.exports = function (mongoose){
+    var Schema = mongoose.Schema;
 
-var projectSchema = new Schema({
-    name: { type: String }
-});
+    var projectSchema = new Schema({
+        name: String
+    });
 
-module.exports = mongoose.model('Project', projectSchema);
+    return mongoose.model('Project', projectSchema);
+}

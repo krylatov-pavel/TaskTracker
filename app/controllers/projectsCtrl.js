@@ -4,15 +4,22 @@ module.exports = function(mongoose) {
     var router = express.Router();
 
     router.route("/")
-        .get(function(req, res, next){
-            res.send("get all");
+        .get(function(req, res, next) {
+            projectSvc.readAll()
+                .then(function (projects) {
+                    res.json(projects);
+                })
+                .catch(function (err) {
+                    next(err);
+                });
         })
-        .post(function(req, res, next){
+        .post(function(req, res, next) {
             projectSvc.create(req.body.name)
-                .then(function(project){
+                .then(function (project) {
                     res.json(project);
-                }, function(err){
-                   next(err);
+                })
+                .catch(function (err) {
+                    next(err);
                 });
         });
 

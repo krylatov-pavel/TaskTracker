@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var db = require("./config/db");
-var mongoose = require("mongoose");
+var mongoose = require("mongoose-promised");
 var bodyParser = require("body-parser");
 
 var port = process.env.PORT || 8080;
