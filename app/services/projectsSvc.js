@@ -10,7 +10,7 @@ module.exports = function(mongoose) {
     };
 
     function readAll() {
-        return Project.where().findQ();
+        return Project.findQ();
     }
 
     function read(id) {
