@@ -1,15 +1,19 @@
 var express = require("express");
 var app = express();
-var db = require("./config/db");
+var config = require("./config/config");
 var mongoose = require("mongoose-q")();
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
 
 var bodyParser = require("body-parser");
 
 var port = process.env.PORT || 8080;
 
-mongoose.connect(db.url);
+mongoose.connect(config.dbUrl);
 
 app.use(express.static('./public'));
+app.use(cookieParser());
+app.use(session({secret: config.appSecret}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

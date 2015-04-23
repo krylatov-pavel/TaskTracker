@@ -40,7 +40,7 @@ module.exports = function(mongoose) {
             })
             .catch(function (err) {
                 deferred.reject(err);
-            })
+            });
 
         return deferred.promise;
     }
@@ -61,7 +61,7 @@ module.exports = function(mongoose) {
             })
             .catch(function (err) {
                 deferred.reject(err);
-            })
+            });
 
         return deferred.promise;
     }
