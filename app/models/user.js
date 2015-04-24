@@ -8,7 +8,7 @@ module.exports = function(mongoose) {
 
     userSchema.methods.isValidPassword = function (plainPassword) {
         var encode = require('hashcode').hashCode;
-        return this.password === encode().value(plainPassword);
+        return this.password === encode().value(plainPassword).toString();
     };
 
     return mongoose.model("User", userSchema);

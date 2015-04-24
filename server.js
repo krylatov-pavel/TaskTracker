@@ -2,6 +2,8 @@ var express = require("express");
 var app = express();
 var config = require("./config/config");
 var mongoose = require("mongoose-q")();
+var User = require("./app/models/user")(mongoose);
+var Project = require("./app/models/project")(mongoose);
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 

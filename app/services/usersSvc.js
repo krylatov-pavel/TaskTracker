@@ -1,6 +1,6 @@
 module.exports = function(mongoose) {
-    var User = require("../models/user")(mongoose);
-    var encode = require( 'hashcode' ).hashCode;
+    var User = mongoose.model("User");
+    var encode = require("hashcode").hashCode;
 
     return {
         create: create,
@@ -25,11 +25,11 @@ module.exports = function(mongoose) {
             });
     }
 
-    function readByEmail(email){
+    function readByEmail(email) {
         return User.findOneQ({"email": email});
     }
 
-    function readById(id){
+    function readById(id) {
         return User.findByIdQ(id);
     }
 };

@@ -1,5 +1,5 @@
 module.exports = function(mongoose) {
-    var Project = require("../models/project")(mongoose);
+    var Project = mongoose.model("Project");
 
     return {
         create: create,

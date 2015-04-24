@@ -1,9 +1,7 @@
-module.exports = function(mongoose) {
-    var express = require("express");
-    var userSvc = require("../services/usersSvc")(mongoose);
+module.exports = function(mongoose){
     var passport = require("passport");
     var LocalStrategy = require("passport-local");
-    var router = new express.Router();
+    var userSvc = require("../services/usersSvc")(mongoose);
 
     passport.use(new LocalStrategy(
         function (username, password, done) {
@@ -37,27 +35,5 @@ module.exports = function(mongoose) {
             });
     });
 
-    router.route("/signUp")
-        .post(function(req, res, next) {
-            if (req.body.password !== req.body.confirmPassword) {
-                return next(new Error("Password and Confirm Password fields not match"));
-            }
-            userSvc.create(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
-                .then(function (user) {
-                    res.json(user);
-                })
-                .catch(function (err) {
-                    next(err);
-                });
-        });
-
-    router.route("/signIn")
-        .post(passport.authenticate('local'), function(req, res){
-            res.status(200).end();
-        });
-
-    return {
-        passport: passport,
-        router: router
-    };
-};
+    return passport;
+}
