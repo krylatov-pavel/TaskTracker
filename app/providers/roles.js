@@ -16,6 +16,6 @@ user.use("authenticated", function (req) {
     if (req.isAuthenticated()) {
         return true;
     }
-})
+});
 
 module.exports = user;

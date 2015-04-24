@@ -1,7 +1,9 @@
-module.exports = function(mongoose){
+module.exports = function(mongoose) {
     var passport = require("passport");
     var LocalStrategy = require("passport-local");
+    var RememberMeStrategy = require("passport-remember-me").Strategy;
     var userSvc = require("../services/usersSvc")(mongoose);
+    var Token = mongoose.model("Token");
 
     passport.use(new LocalStrategy(
         function (username, password, done) {
@@ -35,5 +37,35 @@ module.exports = function(mongoose){
             });
     });
 
+    passport.use(new RememberMeStrategy(
+        function verifyToken(token, done) {
+            Token.consume(token)
+                .then(function (uid) {
+                    if (!uid) {
+                        return done(null, false);
+                    }
+                    return userSvc.readById(uid);
+                })
+                .then(function (user) {
+                    if (!user) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                })
+                .catch(function (err) {
+                    done(err);
+                });
+        },
+        function issueToken(user, done) {
+            Token.issue(user.id)
+                .then(function (token) {
+                    done(null, token.key);
+                })
+                .catch(function (err) {
+                    done(err);
+                });
+        }
+    ));
+
     return passport;
-}
+};
