@@ -2,6 +2,7 @@ module.exports = function(mongoose) {
     var express = require("express");
     var Project = mongoose.model("Project");
     var router = express.Router();
+    var cleanObj = require('clean-obj');
 
     router.route("/")
         .get(function(req, res, next) {
@@ -34,7 +35,20 @@ module.exports = function(mongoose) {
                 });
         })
         .put(function(req, res, next){
-            res.status(503).end();
+            var project = cleanObj({
+                name: req.body.name,
+                user: req.body.user,
+                statuses: req.body.statuses,
+                priorities: req.body.priorities
+            });
+
+            Project.updateQ({ _id: req.params.id}, { $set: project })
+                .then(function(){
+                    res.status(200).end();
+                })
+                .catch(function(err){
+                    next(err);
+                });
         })
         .delete(function(req, res, next){
             Project.findByIdAndRemoveQ(req.params.id)
