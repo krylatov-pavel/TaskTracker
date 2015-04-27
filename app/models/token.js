@@ -21,6 +21,9 @@ module.exports = function(mongoose) {
     tokenSchema.statics.consume = function (tokenString) {
         return this.findOneAndRemoveQ({key: tokenString})
             .then(function (token) {
+                if (!token){
+                    return null;
+                }
                 return token.uid;
             });
     };

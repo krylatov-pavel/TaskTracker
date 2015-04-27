@@ -12,6 +12,6 @@ module.exports = function(app, mongoose) {
 
     app.post("/api/signIn", passport.authenticate('local'), usersCtrl.rememberMe, usersCtrl.signIn);
     app.post("/api/signUp", usersCtrl.signUp);
-    app.post("/api/signOut", usersCtrl.signOut);
+    app.post("/api/signOut", user.can("authenticated"), usersCtrl.signOut);
     app.use("/api/projects", user.can("authenticated"), projectsCtrl);
 };

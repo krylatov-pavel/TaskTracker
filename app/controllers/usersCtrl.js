@@ -1,5 +1,5 @@
 module.exports = function(mongoose) {
-    var userSvc = require("../services/usersSvc")(mongoose);
+    var User = mongoose.model("User");
     var Token = mongoose.model("Token");
 
     return {
@@ -13,7 +13,7 @@ module.exports = function(mongoose) {
         if (req.body.password !== req.body.confirmPassword) {
             return next(new Error("Password and Confirm Password fields not match"));
         }
-        userSvc.create(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
+        User.create(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
             .then(function (user) {
                 res.json(user);
             })

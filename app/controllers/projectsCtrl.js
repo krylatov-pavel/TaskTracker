@@ -1,11 +1,11 @@
 module.exports = function(mongoose) {
     var express = require("express");
-    var projectSvc = require("../services/projectsSvc")(mongoose);
+    var Project = mongoose.model("Project");
     var router = express.Router();
 
     router.route("/")
         .get(function(req, res, next) {
-            projectSvc.readAll()
+            Project.findQ()
                 .then(function (projects) {
                     res.json(projects);
                 })
@@ -14,7 +14,7 @@ module.exports = function(mongoose) {
                 });
         })
         .post(function(req, res, next) {
-            projectSvc.create(req.body.name)
+            Project.create(req.body.name, req.user.id)
                 .then(function (project) {
                     res.json(project);
                 })
@@ -25,13 +25,25 @@ module.exports = function(mongoose) {
 
     router.route("/:id")
         .get(function(req, res, next){
-            res.send("get by id");
+            Project.findByIdQ(req.params.id)
+                .then(function(project){
+                    res.json(project);
+                })
+                .catch(function(err){
+                    next(err);
+                });
         })
         .put(function(req, res, next){
-            res.send("update");
+            res.status(503).end();
         })
         .delete(function(req, res, next){
-            res.send("delete");
+            Project.findByIdAndRemoveQ(req.params.id)
+                .then(function(){
+                    res.status(200).end();
+                })
+                .catch(function(err){
+                    next(err);
+                });
         });
 
     return router;
