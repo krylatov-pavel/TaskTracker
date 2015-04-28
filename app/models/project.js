@@ -14,7 +14,7 @@ module.exports = function (mongoose) {
         project.user = uid;
 
         return project.saveQ();
-    }
+    };
 
     projectSchema.pre("remove", function (next) {
         mongoose.Schema("Ticket").removeAll({project: this._id});

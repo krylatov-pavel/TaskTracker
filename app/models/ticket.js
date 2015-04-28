@@ -1,6 +1,5 @@
 module.exports = function(mongoose) {
     var ticketSchema = new mongoose.Schema({
-        number: Number,
         name: String,
         description: String,
         status: String,

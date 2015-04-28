@@ -1,8 +1,7 @@
 module.exports = function(mongoose) {
-    var express = require("express");
     var Project = mongoose.model("Project");
-    var router = express.Router();
-    var cleanObj = require('clean-obj');
+    var router = require("express").Router();
+    var cleanObj = require("clean-obj");
 
     router.route("/")
         .get(function(req, res, next) {

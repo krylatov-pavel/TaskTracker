@@ -5,6 +5,7 @@ var mongoose = require("mongoose-q")();
 var User = require("./app/models/user")(mongoose);
 var Project = require("./app/models/project")(mongoose);
 var Token = require("./app/models/token")(mongoose);
+var Ticket = require("./app/models/ticket")(mongoose);
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 
