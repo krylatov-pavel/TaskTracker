@@ -1,0 +1,6 @@
+<form data-ng-controller="authController as auth">
+    <input type="text" data-ng-model="auth.signInModel.username" placeholder="email"/>
+    <input type="password" data-ng-model="auth.signInModel.password" placeholder="password"/>
+    <input type="checkbox" data-ng-model="auth.signInModel.rememberMe" checked="false"/>
+    <button type="submit" data-ng-click="auth.signIn(auth.signInModel)">Login</button>
+</form>
