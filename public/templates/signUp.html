@@ -1,0 +1,13 @@
+<div data-ng-controller="authController as auth">
+    <label for="email">Email</label>
+    <input type="text" data-ng-model="auth.signUpModel.email" id="email">
+    <label for="first-name">First Name</label>
+    <input type="text" data-ng-model="auth.signUpModel.firstName" id="first-name">
+    <label for="last-name">Last Name</label>
+    <input type="text" data-ng-model="auth.signUpModel.lastName" id="last-name">
+    <label for="password">Password</label>
+    <input type="password" data-ng-model="auth.signUpModel.password" id="password">
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" data-ng-model="auth.signUpModel.confirmPassword" id="confirm-password">
+    <button data-ng-click="auth.signUp(auth.signUpModel)">Register</button>
+</div>

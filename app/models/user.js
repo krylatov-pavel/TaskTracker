@@ -1,4 +1,6 @@
 module.exports = function(mongoose) {
+    var encode = require('hashcode').hashCode;
+
     var userSchema = new mongoose.Schema({
         email: String,
         password: String,
@@ -8,7 +10,9 @@ module.exports = function(mongoose) {
     });
 
     userSchema.statics.create = function(email, plainPassword, firstName, lastName){
-        return readByEmail(email)
+        var User = this;
+
+        return this.findOne({email: email})
             .then(function (user) {
                 if (user) throw new Error("User with such email already exist");
             })
@@ -25,7 +29,6 @@ module.exports = function(mongoose) {
     };
 
     userSchema.methods.isValidPassword = function (plainPassword) {
-        var encode = require('hashcode').hashCode;
         return this.password === encode().value(plainPassword).toString();
     };
 

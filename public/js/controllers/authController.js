@@ -13,14 +13,17 @@
         /* jshint validthis: true */
         var vm = this;
 
-        vm.signInModel = {};
         vm.signIn = signIn;
-        vm.test = 'test';
+        vm.signUp = signUp;
 
         ////////////////
 
         function signIn(model) {
             return authFactory.signIn(model);
+        }
+
+        function signUp(model) {
+            return authFactory.signUp(model);
         }
     }
 })();

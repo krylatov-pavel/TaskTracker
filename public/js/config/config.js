@@ -7,7 +7,9 @@
         return {
             services: {
                 auth: {
-                    signIn: baseUrl + '/signIn'
+                    signIn: baseUrl + '/signIn',
+                    signUp: baseUrl + '/users',
+                    signOut: baseUrl + '/signOut'
                 }
             }
         };
