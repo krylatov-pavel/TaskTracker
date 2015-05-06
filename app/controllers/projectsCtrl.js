@@ -5,7 +5,7 @@ module.exports = function(mongoose) {
 
     router.route("/")
         .get(function(req, res, next) {
-            Project.findQ()
+            Project.findQ({user: req.user.id})
                 .then(function (projects) {
                     res.json(projects);
                 })

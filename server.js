@@ -14,7 +14,6 @@ var bodyParser = require("body-parser");
 var port = process.env.PORT || 8080;
 
 mongoose.connect(config.dbUrl);
-
 app.use(express.static('./public'));
 app.use(cookieParser());
 app.use(session({secret: config.appSecret}));

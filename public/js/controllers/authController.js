@@ -5,10 +5,10 @@
         .module('app')
         .controller('authController', authController);
 
-    authController.$inject = ['authFactory'];
+    authController.$inject = ['userService'];
 
     /* @ngInject */
-    function authController(authFactory)
+    function authController(userService)
     {
         /* jshint validthis: true */
         var vm = this;
@@ -19,11 +19,11 @@
         ////////////////
 
         function signIn(model) {
-            return authFactory.signIn(model);
+            return userService.signIn(model);
         }
 
         function signUp(model) {
-            return authFactory.signUp(model);
+            return userService.signUp(model);
         }
     }
 })();

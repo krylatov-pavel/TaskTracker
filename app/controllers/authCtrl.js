@@ -5,11 +5,12 @@ module.exports = function(mongoose) {
     return {
         signIn: signIn,
         signOut: signOut,
-        rememberMe: rememberMe
+        rememberMe: rememberMe,
+        isAuthenticated: isAuthenticated
     };
 
     function signIn(req, res) {
-        res.status(200).end();
+        res.json(getCurrentUser(req));
     }
 
     function signOut(req, res){
@@ -31,5 +32,16 @@ module.exports = function(mongoose) {
             .catch(function (err) {
                 next(err);
             });
+    }
+
+    function isAuthenticated(req, res) {
+        res.json(getCurrentUser(req));
+    }
+
+    function getCurrentUser(req){
+        return {
+            name: req.isAuthenticated() ? req.user.name : '',
+            isAuthenticated: req.isAuthenticated()
+        };
     }
 };

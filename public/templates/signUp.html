@@ -1,13 +1,25 @@
-<div data-ng-controller="authController as auth">
-    <label for="email">Email</label>
-    <input type="text" data-ng-model="auth.signUpModel.email" id="email">
-    <label for="first-name">First Name</label>
-    <input type="text" data-ng-model="auth.signUpModel.firstName" id="first-name">
-    <label for="last-name">Last Name</label>
-    <input type="text" data-ng-model="auth.signUpModel.lastName" id="last-name">
-    <label for="password">Password</label>
-    <input type="password" data-ng-model="auth.signUpModel.password" id="password">
-    <label for="confirm-password">Confirm Password</label>
-    <input type="password" data-ng-model="auth.signUpModel.confirmPassword" id="confirm-password">
-    <button data-ng-click="auth.signUp(auth.signUpModel)">Register</button>
+<div class="container">
+    <form data-ng-controller="authController as auth" class="col-sm-6 col-sm-offset-3">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" data-ng-model="auth.signUpModel.email" id="email" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" data-ng-model="auth.signUpModel.firstName" id="first-name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" data-ng-model="auth.signUpModel.lastName" id="last-name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" data-ng-model="auth.signUpModel.password" id="password" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" data-ng-model="auth.signUpModel.confirmPassword" id="confirm-password" class="form-control">
+        </div>
+        <button type="submit" data-ng-click="auth.signUp(auth.signUpModel)" class="btn btn-primary">Register</button>
+    </form>
 </div>

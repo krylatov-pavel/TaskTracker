@@ -3,19 +3,19 @@
 
     angular
         .module('app')
-        .factory('authFactory', authFactory);
+        .factory('userService', userService);
 
-    authFactory.$inject = ['$http', 'toastr', 'config'];
+    userService.$inject = ['$http', 'toastr', 'config', 'authService'];
 
     /* @ngInject */
-    function authFactory($http, toastr, config) {
-        var auth = {
+    function userService($http, toastr, config, auth) {
+        var user = {
             signIn: signIn,
             signUp: signUp,
             signOut: signOut
         };
 
-        return auth;
+        return user;
 
         ////////////////
 
@@ -23,6 +23,7 @@
             return $http.post(config.services.auth.signIn, signInModel)
                 .then(function (response) {
                     toastr.success("You have successfully signed in.");
+                    auth.user = response.data;
                     return response;
                 })
                 .catch(function (err) {
@@ -38,7 +39,7 @@
             return $http.post(config.services.auth.signUp, signUpModel)
                 .then(function (response) {
                     toastr.success("You have successfully registered.");
-                    return response;
+                    return signIn(signUpModel);
                 })
                 .catch(function (err) {
                     throw err;
@@ -49,6 +50,8 @@
             return $http.post(config.services.auth.signOut)
                 .then(function (response) {
                     toastr.success("Sign out");
+                    auth.user.name = '';
+                    auth.user.isAuthenticated = false;
                     return response;
                 })
                 .catch(function (err) {

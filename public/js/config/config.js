@@ -9,8 +9,10 @@
                 auth: {
                     signIn: baseUrl + '/signIn',
                     signUp: baseUrl + '/users',
-                    signOut: baseUrl + '/signOut'
-                }
+                    signOut: baseUrl + '/signOut',
+                    isAuthenticated: baseUrl + '/isAuthenticated'
+                },
+                projects: baseUrl + '/projects'
             }
         };
     })());

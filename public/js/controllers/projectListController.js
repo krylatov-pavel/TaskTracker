@@ -2,20 +2,24 @@
     'use strict';
 
     angular
-        .module('')
+        .module('app')
         .controller('projectListController', projectListController);
 
-    projectListController.$inject = [''];
+    projectListController.$inject = ['projectsFactory'];
 
     /* @ngInject */
-    function projectListController() {
+    function projectListController(projectsFactory) {
         /* jshint validthis: true */
         var vm = this;
-        vm.projects = [];
+        vm.list = [];
 
         activate();
 
         function activate() {
+            projectsFactory.getAll()
+                .then(function (data) {
+                    vm.list = data;
+                });
         }
     }
 })();
