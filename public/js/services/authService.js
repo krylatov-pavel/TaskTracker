@@ -1,34 +1,36 @@
-(function () {
-    'use strict';
+angular.module('app').factory('authService', authService);
 
-    angular
-        .module('app')
-        .factory('authService', authService);
+function authService($q, $http, config) {
+    var currentUser = null;
 
-    authService.$inject = ['$http', 'config'];
+    return {
+        state: state
+    };
 
-    /* @ngInject */
-    function authService($http, config) {
-        var service = {
-            user: {
-                name: '',
-                isAuthenticated: false
-            }
-        };
-
-        initialize();
-
-        return service;
-
-        function initialize() {
-            $http.post(config.services.auth.isAuthenticated)
-                .then(function (response) {
-                    service.user = response.data;
-                })
-                .catch(function (err) {
-                    throw err;
-                });
+    function state(user) {
+        if (user) {
+            return setState(user);
         }
+        return getState();
     }
-})
-();
+
+    function setState(user) {
+        angular.extend(currentUser, user);
+    }
+
+    function getState() {
+        if (currentUser) {
+            var deferred = $q.defer();
+            deferred.resolve(currentUser);
+            return deferred.promise;
+        }
+        return $http.post(config.services.auth.isAuthenticated)
+            .then(function (response) {
+                currentUser = response.data;
+                return currentUser;
+            })
+            .catch(function (err) {
+                throw err;
+            });
+    }
+}

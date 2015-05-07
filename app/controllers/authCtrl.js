@@ -44,4 +44,6 @@ module.exports = function(mongoose) {
             isAuthenticated: req.isAuthenticated()
         };
     }
+
+
 };
