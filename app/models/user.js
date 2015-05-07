@@ -32,6 +32,12 @@ module.exports = function(mongoose) {
         return this.password === encode().value(plainPassword).toString();
     };
 
+    userSchema.methods.toJSON = function() {
+        var obj = this.toObject();
+        delete obj.password;
+        return obj;
+    }
+
     userSchema.pre("remove", function(next){
         mongoose.Schema("Project").removeAll({user: this._id}).exec();
         next();

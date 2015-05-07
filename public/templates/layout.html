@@ -1,0 +1,16 @@
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li ui-sref-active="active"><a ui-sref="main.projects">Projects</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" data-ng-if="!main.user.isAuthenticated">
+            <li ui-sref-active="active"><a ui-sref="main.signIn">Login</a></li>
+            <li ui-sref-active="active"><a ui-sref="main.signUp">Register</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" data-ng-if="main.user.isAuthenticated">
+            <li><a>Hi, {{main.user.name}}!</a></li>
+            <li><a data-ng-click="main.signOut()">Log out</a></li>
+        </ul>
+    </div>
+</nav>
+<div data-ui-view></div>

@@ -23,7 +23,7 @@
             return $http.post(config.services.auth.signIn, signInModel)
                 .then(function (response) {
                     toastr.success("You have successfully signed in.");
-                    auth.user = response.data;
+                    auth.state(response.data);
                     return response;
                 })
                 .catch(function (err) {
@@ -50,8 +50,10 @@
             return $http.post(config.services.auth.signOut)
                 .then(function (response) {
                     toastr.success("Sign out");
-                    auth.user.name = '';
-                    auth.user.isAuthenticated = false;
+                    auth.state({
+                        name: '',
+                        isAuthenticated: false
+                    });
                     return response;
                 })
                 .catch(function (err) {

@@ -40,7 +40,7 @@ module.exports = function(mongoose) {
 
     function getCurrentUser(req){
         return {
-            name: req.isAuthenticated() ? req.user.name : '',
+            name: req.isAuthenticated() ? req.user.firstName : '',
             isAuthenticated: req.isAuthenticated()
         };
     }

@@ -5,10 +5,8 @@
         .module('app')
         .controller('authController', authController);
 
-    authController.$inject = ['userService'];
-
     /* @ngInject */
-    function authController(userService)
+    function authController($state, userService)
     {
         /* jshint validthis: true */
         var vm = this;
@@ -19,7 +17,10 @@
         ////////////////
 
         function signIn(model) {
-            return userService.signIn(model);
+            userService.signIn(model)
+                .then(function(){
+                   $state.go('main');
+                });
         }
 
         function signUp(model) {
