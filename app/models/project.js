@@ -8,7 +8,7 @@ module.exports = function (mongoose) {
     });
 
     projectSchema.statics.create = function create(name, uid) {
-        var project = new Project();
+        var project = new this();
 
         project.name = name;
         project.user = uid;

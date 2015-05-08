@@ -1,25 +1,24 @@
-(function () {
-    'use strict';
+angular
+    .module('app')
+    .controller('projectListController', projectListController);
 
-    angular
-        .module('app')
-        .controller('projectListController', projectListController);
+function projectListController(projectsService) {
+    /* jshint validthis: true */
+    var vm = this;
+    vm.list = [];
+    vm.add = add;
 
-    projectListController.$inject = ['projectsFactory'];
+    activate();
 
-    /* @ngInject */
-    function projectListController(projectsFactory) {
-        /* jshint validthis: true */
-        var vm = this;
-        vm.list = [];
-
-        activate();
-
-        function activate() {
-            projectsFactory.getAll()
-                .then(function (data) {
-                    vm.list = data;
-                });
-        }
+    function activate() {
+        projectsService.getAll()
+            .then(function (data) {
+                vm.list = data;
+            });
     }
-})();
+
+    function add(name) {
+        projectsService.add(name);
+    }
+}
+

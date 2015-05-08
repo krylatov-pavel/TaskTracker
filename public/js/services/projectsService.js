@@ -1,28 +1,70 @@
-(function () {
-    'use strict';
+angular
+    .module('app')
+    .factory('projectsService', projectsService);
 
-    angular
-        .module('app')
-        .factory('projectsFactory', projectsFactory);
+function projectsService($http, toastr, config) {
+    var list = [];
 
-    projectsFactory.$inject = ['$http', 'toastr', 'config'];
+    var service = {
+        get : get,
+        getAll: getAll,
+        add: add,
+        remove: remove,
+        update: update
+    };
 
-    /* @ngInject */
-    function projectsFactory($http, toastr, config) {
-        var service = {
-            getAll: getAll
-        };
+    return service;
 
-        return service;
-
-        function getAll() {
-            return $http.get(config.services.projects)
-                .then(function (response) {
-                    return response.data;
-                })
-                .catch(function (err) {
-                    throw err;
-                });
-        }
+    function get(id) {
+        return $http.get(config.services.projects + '/' + id)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (err) {
+                throw err;
+            });
     }
-})();
+
+    function getAll() {
+        return $http.get(config.services.projects)
+            .then(function (response) {
+                list.length = 0;
+                list.push.apply( list, response.data );
+                return list;
+            })
+            .catch(function (err) {
+                throw err;
+            });
+    }
+
+    function add(name){
+        return $http.post(config.services.projects, {name: name})
+            .then(function(response){
+                list.push(response.data);
+                return response.data;
+            })
+            .catch(function(err){
+                throw err;
+            });
+    }
+
+    function remove(project){
+        return $http.delete(config.services.project + '/' + project._id)
+            .then(function(response){
+                return response.data;
+            })
+            .catch(function(){
+               throw err;
+            });
+    }
+
+    function update(project){
+        return $http.update(config.services.project + '/' + id)
+            .then(function(response){
+                return response.data;
+            })
+            .catch(function(){
+                throw err;
+            });
+    }
+}

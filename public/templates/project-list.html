@@ -1,3 +1,19 @@
-<ul data-ng-repeat="project in projects.list">
-    <li>{{project.name}}</li>
-</ul>
+<div class="container">
+    <div class="col-sm-5">
+        <form class="form-inline ">
+            <div class="input-group">
+                <input data-ng-model="projects.name" type="text" class="form-control" placeholder="project name">
+                <span class="input-group-btn">
+                    <button data-ng-click="projects.add(projects.name)" type="submit" class="btn btn-primary">Add</button>
+                </span>
+            </div>
+        </form>
+        <ul data-ng-repeat="project in projects.list">
+            <li>{{project.name}}</li>
+        </ul>
+    </div>
+    <div class="col-sm-7">
+        <div class="jumbotron"><h1>This is edit project area</h1></div>
+    </div>
+
+</div>
