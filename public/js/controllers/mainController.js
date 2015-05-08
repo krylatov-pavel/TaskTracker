@@ -5,6 +5,11 @@ function mainController(user, userService){
 
     vm.user = user;
     vm.signOut = signOut;
+    vm.check = check;
+
+    function check(){
+        console.log(vm.user);
+    }
 
     function signOut(){
         userService.signOut();

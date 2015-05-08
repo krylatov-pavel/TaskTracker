@@ -39,20 +39,16 @@
         .run(function ($rootScope, $state, authService, toastr) {
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
                 authService.state()
-                    .then(function(user){
-                        if (!user.isAuthenticated){
-                            if (!toState.public) {
-                                if (toState.name !== 'main.signIn') {
-                                    event.preventDefault();
-                                    toastr.warning("You're are not logged in");
-                                    $state.go('main.signIn');
-                                }
+                    .then(function(user) {
+                        if (!(user.isAuthenticated || toState.public)) {
+                            if (toState.name !== 'main.signIn') {
+                                event.preventDefault();
+                                toastr.warning("You're are not logged in");
+                                $state.go('main.signIn');
                             }
                         }
                     });
             });
         }
     );
-    //TO DO: hide login and register links if user authenticated;
-    //TO DO: logout user on 401 error
 })();

@@ -3,12 +3,10 @@ var ConnectRoles = require("connect-roles");
 var user = new ConnectRoles({
     failureHandler: function (req, res, action) {
         var accept = req.headers.accept || '';
-        res.status(403);
-        if (~accept.indexOf("html")) {
-            res.render("access-denied", {action: action});
-        } else {
-            res.send("Access Denied - You don\'t have permission to: " + action);
+        if (!req.isAuthenticated()){
+            return res.status(401).send("Unauthenticated request");
         }
+        res.status(403).send("Access Denied - You don\'t have permission to: " + action);
     }
 });
 
