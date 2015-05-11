@@ -1,6 +1,6 @@
 angular.module('app').controller('projectEditController', projectEditController);
 
-function projectEditController($stateParams, toastr, lodash, projectsService){
+function projectEditController($state, $stateParams, toastr, lodash, projectsService){
     /* jshint validthis: true */
     var vm = this;
     vm.data = null;
@@ -8,6 +8,9 @@ function projectEditController($stateParams, toastr, lodash, projectsService){
     vm.addPriority = addPriority;
     vm.removeStatus = removeStatus;
     vm.removePriority = removePriority;
+    vm.open = open;
+    vm.remove = remove;
+    vm.save = save;
 
     activate();
 
@@ -42,5 +45,26 @@ function projectEditController($stateParams, toastr, lodash, projectsService){
         lodash.remove(vm.data.priorities, function(item){
             return item === priority;
         });
+    }
+
+    function open(project){
+        $state.go('main.project', {projectId : project._id});
+    }
+
+    function remove(project){
+        if (confirm('Are you sure?')){
+            projectsService.remove(project)
+                .then(function(){
+                    toastr.success('project deleted');
+                    $state.go('main.projects');
+                });
+        }
+    }
+
+    function save(project){
+        projectsService.update(project)
+            .then(function(){
+               toastr.success('project saved');
+            });
     }
 }

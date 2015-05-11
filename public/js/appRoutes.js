@@ -40,10 +40,14 @@
                     }
                 })
                 .state('main.projects.edit', {
-                    url: '/:projectId',
+                    url: '/edit/:projectId',
                     templateUrl: baseUrl + '/project-edit.html',
                     controller: 'projectEditController',
                     controllerAs: 'project'
+                })
+                .state('main.project',{
+                    url: '/projects/:projectId',
+                    templateUrl: baseUrl + '/project-view.html'
                 });
 
         })

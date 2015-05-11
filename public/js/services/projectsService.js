@@ -49,24 +49,27 @@ function projectsService($http, toastr, config, lodash) {
     }
 
     function remove(project){
-        return $http.delete(config.services.project + '/' + project._id)
+        return $http.delete(config.services.projects + '/' + project._id)
             .then(function(response) {
                 lodash.remove(list, function (item) {
                     return item._id == project._id;
                 });
                 return response.data;
             })
-            .catch(function(){
+            .catch(function(err){
                throw err;
             });
     }
 
     function update(project){
-        return $http.update(config.services.project + '/' + project._id)
+        return $http.put(config.services.projects + '/' + project._id, project)
             .then(function(response){
+                angular.extend(lodash.find(list, function(item){
+                    return item._id === project._id;
+                }), project);
                 return response.data;
             })
-            .catch(function(){
+            .catch(function(err){
                 throw err;
             });
     }
