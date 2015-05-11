@@ -2,7 +2,7 @@ angular
     .module('app')
     .factory('projectsService', projectsService);
 
-function projectsService($http, toastr, config) {
+function projectsService($http, toastr, config, lodash) {
     var list = [];
 
     var service = {
@@ -50,7 +50,10 @@ function projectsService($http, toastr, config) {
 
     function remove(project){
         return $http.delete(config.services.project + '/' + project._id)
-            .then(function(response){
+            .then(function(response) {
+                lodash.remove(list, function (item) {
+                    return item._id == project._id;
+                });
                 return response.data;
             })
             .catch(function(){
@@ -59,7 +62,7 @@ function projectsService($http, toastr, config) {
     }
 
     function update(project){
-        return $http.update(config.services.project + '/' + id)
+        return $http.update(config.services.project + '/' + project._id)
             .then(function(response){
                 return response.data;
             })

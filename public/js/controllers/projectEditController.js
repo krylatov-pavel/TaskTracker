@@ -1,0 +1,46 @@
+angular.module('app').controller('projectEditController', projectEditController);
+
+function projectEditController($stateParams, toastr, lodash, projectsService){
+    /* jshint validthis: true */
+    var vm = this;
+    vm.data = null;
+    vm.addStatus = addStatus;
+    vm.addPriority = addPriority;
+    vm.removeStatus = removeStatus;
+    vm.removePriority = removePriority;
+
+    activate();
+
+    function activate (){
+        projectsService.get($stateParams.projectId)
+            .then(function(project){
+                vm.data = project;
+            });
+    }
+
+    function addStatus(status){
+        if (vm.data.statuses.indexOf(status) > -1) {
+            return toastr.warning("this status already exist");
+        }
+        vm.data.statuses.push(status);
+    }
+
+    function addPriority(priority){
+        if (vm.data.priorities.indexOf(priority) > -1){
+            return toastr.warning("this priority already exist");
+        }
+        vm.data.priorities.push(priority);
+    }
+
+    function removeStatus(status){
+         lodash.remove(vm.data.statuses, function(item){
+             return item === status;
+         });
+    }
+
+    function removePriority(priority){
+        lodash.remove(vm.data.priorities, function(item){
+            return item === priority;
+        });
+    }
+}

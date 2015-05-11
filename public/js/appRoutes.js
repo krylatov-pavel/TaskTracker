@@ -10,10 +10,10 @@
                     url: '',
                     templateUrl: baseUrl + '/layout.html',
                     controller: 'mainController',
-                    controllerAs : 'main',
+                    controllerAs: 'main',
                     public: true,
                     resolve: {
-                        user: function(authService) {
+                        user: function (authService) {
                             return authService.state();
                         }
                     }
@@ -32,8 +32,19 @@
                     url: '/projects',
                     templateUrl: baseUrl + '/project-list.html',
                     controller: 'projectListController',
-                    controllerAs: 'projects'
+                    controllerAs: 'projects',
+                    resolve: {
+                        projects: function (projectsService) {
+                            return projectsService.getAll()
+                        }
+                    }
                 })
+                .state('main.projects.edit', {
+                    url: '/:projectId',
+                    templateUrl: baseUrl + '/project-edit.html',
+                    controller: 'projectEditController',
+                    controllerAs: 'project'
+                });
 
         })
         .run(function ($rootScope, $state, authService, toastr) {

@@ -1,0 +1,42 @@
+<form data-ng-if="project.data">
+    <div class="form-group">
+        <label for="project-name">Project name</label>
+        <input type="text" class="form-control" data-ng-model="project.data.name" id="project-name"/>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Statuses</h4>
+            <div class="list-group">
+                <div class="list-group-item" data-ng-repeat="status in project.data.statuses"
+                     data-ng-mouseenter="this.hovered = true"
+                     data-ng-mouseleave="this.hovered = false">
+                    <span>{{status}}</span>
+                    <a ng-show="this.hovered" data-ng-click="project.removeStatus(status)"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                </div>
+            </div>
+            <div class="input-group">
+                <input class="form-control" type="text" data-ng-model="project.newStatus" placeholder="status name"/>
+                <span class="input-group-btn">
+                    <button data-ng-click="project.addStatus(project.newStatus)" class="btn btn-primary">Add</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h4>Priorities</h4>
+            <div class="list-group">
+                <div class="list-group-item" data-ng-repeat="priority in project.data.priorities"
+                     data-ng-mouseenter="this.hovered = true"
+                     data-ng-mouseleave="this.hovered = false">
+                    <span>{{priority}}</span>
+                    <a ng-show="this.hovered" data-ng-click="project.removePriority(priority)"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                </div>
+            </div>
+            <div class="input-group">
+                <input class="form-control" type="text" data-ng-model="project.newPriority" placeholder="priority name"/>
+                <span class="input-group-btn">
+                    <button data-ng-click="project.addPriority(project.newPriority)" class="btn btn-primary">Add</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>

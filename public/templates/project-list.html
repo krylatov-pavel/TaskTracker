@@ -1,19 +1,28 @@
 <div class="container">
-    <div class="col-sm-5">
-        <form class="form-inline ">
-            <div class="input-group">
-                <input data-ng-model="projects.name" type="text" class="form-control" placeholder="project name">
+    <form class="form-inline">
+        <div class="input-group">
+            <input data-ng-model="projects.name" type="text" class="form-control" placeholder="project name">
                 <span class="input-group-btn">
-                    <button data-ng-click="projects.add(projects.name)" type="submit" class="btn btn-primary">Add</button>
+                    <button data-ng-click="projects.add(projects.name)" type="submit" class="btn btn-primary">Add
+                    </button>
                 </span>
+        </div>
+    </form>
+    <hr>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="list-group">
+                <a data-ng-repeat="project in projects.list" class="list-group-item"
+                   data-ui-sref="main.projects.edit({projectId : project._id})"
+                   data-ui-sref-active="active">
+                    <span>{{project.name}}</span>
+                </a>
             </div>
-        </form>
-        <ul data-ng-repeat="project in projects.list">
-            <li>{{project.name}}</li>
-        </ul>
+        </div>
+        <div class="col-sm-7 col-sm-offset-1">
+            <ui-view>
+                <div class="jumbotron"><h3>select project from list</h3></div>
+            </ui-view>
+        </div>
     </div>
-    <div class="col-sm-7">
-        <div class="jumbotron"><h1>This is edit project area</h1></div>
-    </div>
-
 </div>
