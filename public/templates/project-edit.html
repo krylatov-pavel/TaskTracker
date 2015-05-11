@@ -1,4 +1,4 @@
-<form data-ng-if="project.data">
+<form name="edit" data-ng-if="project.data">
     <div class="form-group">
         <label for="project-name">Project name</label>
         <input type="text" class="form-control" data-ng-model="project.data.name" id="project-name"/>
@@ -41,7 +41,8 @@
     </div>
     <hr>
     <div class="form-group">
-        <button class="btn btn-primary" data-ng-click="project.save(project.data)">Save</button>
+        <button class="btn btn-primary" data-ng-click="project.save(project.data)"
+                data-ng-disabled="!edit.$dirty">Save</button>
         <button class="btn btn-danger" data-ng-click="project.remove(project.data)">Remove <span class="glyphicon glyphicon-remove"></span></button>
         <button class="btn btn-success pull-right" data-ng-click="project.open(project.data)">Open</button>
     </div>
