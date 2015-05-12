@@ -1,1 +1,31 @@
-<h1>project view</h1>
+<div class="container" ng-if="project.data">
+    <ul class="list-inline">
+        <li>
+            <h4 class="text-capitalize">{{project.data.name}}</h4>
+        </li>
+        <li>
+            <button class="btn btn-primary" ng-click="project.addTicket()">Add ticket</button>
+        </li>
+    </ul>
+    <hr>
+    <div class="row">
+        <div class="col-sm-4 text-center" data-ng-repeat="status in project.data.statuses">
+            <h3>{{status}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" data-ng-repeat="status in project.data.statuses">
+            <div class="panel panel-primary" ng-repeat="ticket in project.data.tickets | filter:{status:status}">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{{ticket.name}}</h4>
+                </div>
+                <div class="panel-body">
+                    <span>{{ticket.description}}</span>
+                </div>
+                <div class="panel-footer text-right">
+                    <span>{{ticket.assignee.firstName + ' ' + ticket.assignee.lastName}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

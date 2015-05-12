@@ -1,0 +1,39 @@
+<div class="container">
+    <a data-ui-sref="main.project({projectId: ticket.data.project})">Back</a>
+    <hr>
+    <form>
+        <div class="row">
+        <div class="col-sm-7">
+            <div class="form-group">
+                <label for="name">Name</label>
+            <input type="text" class="form-control" placeholder="name" data-ng-model="ticket.data.name" id="name"/>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" rows="5" placeholder="description" id="description"
+                          data-ng-model="ticket.data.description"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label for="assignee">Assignee</label>
+                <select ng-model="ticket.data.assignee" id="assignee" class="form-control">
+                    <option ng-repeat="user in ticket.users" value="{{user._id}}">{{user.firstName + ' ' + user.lastName}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" ng-model="ticket.data.status" id="status"
+                        ng-options="status for status in ticket.statuses"></select>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select class="form-control" ng-model="ticket.data.priority" id="priority"
+                        ng-options="priority for priority in ticket.priorities"></select>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <button class="btn btn-primary pull-right" data-ng-click="ticket.add(ticket.data)">Create</button>
+    </form>
+</div>

@@ -47,9 +47,32 @@
                 })
                 .state('main.project',{
                     url: '/projects/:projectId',
-                    templateUrl: baseUrl + '/project-view.html'
+                    templateUrl: baseUrl + '/project-view.html',
+                    controller: 'projectViewController',
+                    controllerAs: 'project',
+                    resolve: {
+                        project: function($stateParams, projectsService){
+                            return projectsService.get($stateParams.projectId);
+                        },
+                        tickets: function($stateParams, ticketService){
+                            return ticketService.getAll($stateParams.projectId);
+                        }
+                    }
+                })
+                .state('main.addTicket', {
+                    url: '/projects/:projectId/addTicket',
+                    templateUrl: baseUrl + '/project-add-ticket.html',
+                    controller: 'addTicketController',
+                    controllerAs: 'ticket',
+                    resolve: {
+                        project: function($stateParams, projectsService) {
+                            return projectsService.get($stateParams.projectId);
+                        },
+                        users: function(userService){
+                            return userService.getAll();
+                        }
+                    }
                 });
-
         })
         .run(function ($rootScope, $state, authService, toastr) {
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {

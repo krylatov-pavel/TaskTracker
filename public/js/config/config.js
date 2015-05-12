@@ -12,7 +12,9 @@
                     signOut: baseUrl + '/signOut',
                     isAuthenticated: baseUrl + '/isAuthenticated'
                 },
-                projects: baseUrl + '/projects'
+                users: baseUrl + '/users',
+                projects: baseUrl + '/projects',
+                tickets: baseUrl + '/tickets'
             }
         };
     })());

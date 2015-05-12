@@ -5,7 +5,15 @@ module.exports = function(mongoose) {
 
     router.route("/:projectId")
         .get(function (req, res, next) {
-            res.status(503).end();
+            Ticket.find({project: req.params.projectId})
+                .populate("assignee")
+                .execQ()
+                .then(function (tickets) {
+                    res.json(tickets);
+                })
+                .catch(function (err) {
+                    next(err);
+                });
         })
         .post(function (req, res, next) {
             var ticket = new Ticket({

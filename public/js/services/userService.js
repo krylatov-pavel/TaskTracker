@@ -12,7 +12,8 @@
         var user = {
             signIn: signIn,
             signUp: signUp,
-            signOut: signOut
+            signOut: signOut,
+            getAll: getAll
         };
 
         return user;
@@ -57,6 +58,16 @@
                     return response;
                 })
                 .catch(function (err) {
+                    throw err;
+                });
+        }
+
+        function getAll(){
+            return $http.get(config.services.users)
+                .then(function (response){
+                    return response.data;
+                })
+                .catch(function(err){
                     throw err;
                 });
         }

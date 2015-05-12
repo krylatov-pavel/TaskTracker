@@ -2,7 +2,7 @@ angular
     .module('app')
     .factory('projectsService', projectsService);
 
-function projectsService($http, toastr, config, lodash) {
+function projectsService($q, $http, toastr, config, lodash) {
     var list = [];
 
     var service = {
@@ -16,6 +16,14 @@ function projectsService($http, toastr, config, lodash) {
     return service;
 
     function get(id) {
+        var project = lodash.find(list, function(item){
+            return item._id === id;
+        });
+        if (project){
+            var deferred = $q.defer();
+            deferred.resolve(project);
+            return deferred.promise;
+        }
         return $http.get(config.services.projects + '/' + id)
             .then(function (response) {
                 return response.data;
