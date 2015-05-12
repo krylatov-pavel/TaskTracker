@@ -9,13 +9,13 @@
     </ul>
     <hr>
     <div class="row">
-        <div class="col-sm-4 text-center" data-ng-repeat="status in project.data.statuses">
+        <div data-ng-class="project.data.statuses.length | columnClass : 'sm'" class="text-center" data-ng-repeat="status in project.data.statuses">
             <h3>{{status}}</h3>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" data-ng-repeat="status in project.data.statuses">
-            <div class="panel panel-primary" ng-repeat="ticket in project.data.tickets | filter:{status:status}">
+        <div data-ng-class="project.data.statuses.length | columnClass : 'sm'" data-ng-repeat="status in project.data.statuses">
+            <div class="panel" data-ng-class="ticket.priority | priorityClass" ng-repeat="ticket in project.data.tickets | filter:{status:status}">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{ticket.name}}</h4>
                 </div>
