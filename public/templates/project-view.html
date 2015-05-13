@@ -15,9 +15,15 @@
     </div>
     <div class="row">
         <div data-ng-class="project.data.statuses.length | columnClass : 'sm'" data-ng-repeat="status in project.data.statuses">
-            <div class="panel" data-ng-class="ticket.priority | priorityClass" ng-repeat="ticket in project.data.tickets | filter:{status:status}">
+            <ul class="list-group" dnd-list="project.data.tickets" dnd-drop="project.moveTicket(item, status)">
+                <li class="list-group-item panel" data-ng-class="ticket.priority | priorityClass"
+                    ng-repeat="ticket in project.data.tickets | filter:{status:status}"
+                    dnd-draggable="ticket"
+                    dnd-effect-allowed="move"
+                    dnd-selected="project.selected = ticket"
+                    >
                 <div class="panel-heading">
-                    <h4 class="panel-title">{{ticket.name}}</h4>
+                    {{$index}}<h4 class="panel-title">{{ticket.name}}</h4>
                 </div>
                 <div class="panel-body">
                     <span>{{ticket.description}}</span>
@@ -25,7 +31,8 @@
                 <div class="panel-footer text-right">
                     <span>{{ticket.assignee.firstName + ' ' + ticket.assignee.lastName}}</span>
                 </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

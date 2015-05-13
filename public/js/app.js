@@ -2,7 +2,8 @@ angular.module('app', [
     'ui.router',
     'ngAnimate',
     'toastr',
-    'ngLodash'
+    'ngLodash',
+    'dndLists'
 ]).config(function (toastrConfig) {
     angular.extend(toastrConfig, {
         positionClass: 'toast-bottom-right'

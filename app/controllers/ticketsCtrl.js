@@ -67,3 +67,6 @@ module.exports = function(mongoose) {
 
     return router;
 };
+
+//TO DO: use drag and drop to change ticket statuses;
+//TO DO: use gulp to minify and concat;
