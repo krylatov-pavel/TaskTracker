@@ -5,11 +5,15 @@
     <title>Task Tracker</title>
 
     <!--vendor styles-->
-    <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="libs/angular-toastr/dist/angular-toastr.css" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/libs/angular-toastr/dist/angular-toastr.css">
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.css">
+    <!-- endinject -->
 
     <!--custom styles-->
-    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/build/css/main.min.css">
+    <!-- endinject -->
 </head>
 <body>
 <div data-ng-app="app">
@@ -17,33 +21,21 @@
 </div>
 
 <!--vendor scripts-->
-<script src="libs/angular/angular.js" type="text/javascript"></script>
-<script src="libs/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script>
-<script src="libs/angular-animate/angular-animate.js" type="text/javascript"></script>
-<script src="libs/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
-<script src="libs/angular-toastr/dist/angular-toastr.tpls.js" type="text/javascript"></script>
-<script src="libs/ng-lodash/build/ng-lodash.js" type="text/javascript"></script>
-<script src="libs/dndLists/angular-drag-and-drop-lists.js" type="text/javascript"></script>
-
-
+<!-- bower:js -->
+<script src="/libs/angular/angular.min.js"></script>
+<script src="/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/libs/angular-animate/angular-animate.min.js"></script>
+<script src="/libs/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/ng-lodash/build/ng-lodash.min.js"></script>
+<script src="/libs/dndLists/angular-drag-and-drop-lists.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- endinject -->
 
 <!--custom scripts-->
-<script src="js/app.js" type="text/javascript"></script>
-<script src="js/appRoutes.js" type="text/javascript"></script>
-<script src="js/config/config.js" type="text/javascript"></script>
-<script src="js/handlers/errorHandler.js" type="text/javascript"></script>
-<script src="js/handlers/sessionEndHandler.js" type="text/javascript"></script>
-<script src="js/controllers/authController.js" type="text/javascript"></script>
-<script src="js/controllers/projectListController.js" type="text/javascript"></script>
-<script src="js/controllers/projectEditController.js" type="text/javascript"></script>
-<script src="js/controllers/projectViewController.js" type="text/javascript"></script>
-<script src="js/controllers/mainController.js" type="text/javascript"></script>
-<script src="js/controllers/addTicketController.js" type="text/javascript"></script>
-<script src="js/services/userService.js" type="text/javascript"></script>
-<script src="js/services/authService.js" type="text/javascript"></script>
-<script src="js/services/projectsService.js" type="text/javascript"></script>
-<script src="js/services/ticketService.js" type="text/javascript"></script>
-<script src="js/filters/columnClassFilter.js" type="text/javascript"></script>
-<script src="js/filters/priorityClassFilter.js" type="text/javascript"></script>
+<!-- inject:js -->
+<script src="/build/js/app.min.js"></script>
+<!-- endinject -->
 </body>
 </html>
