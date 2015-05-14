@@ -79,11 +79,9 @@
                 authService.state()
                     .then(function(user) {
                         if (!(user.isAuthenticated || toState.public)) {
-                            if (toState.name !== 'main.signIn') {
-                                event.preventDefault();
-                                toastr.warning("You're are not logged in");
-                                $state.go('main.signIn');
-                            }
+                            event.preventDefault();
+                            toastr.warning("You're are not logged in");
+                            $state.go('main.signIn');
                         }
                     });
             });
